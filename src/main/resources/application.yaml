@@ -1,0 +1,24 @@
+spring:
+
+  application:
+    name: store
+  datasource:
+    url: jdbc:mysql://localhost:3306/store_api?createDatabaseIfNotExist=true
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update      # تحديث الـ schema عند أي تعديل على الـ Entities
+    show-sql: true           # عرض الـ SQL في الكونسول
+  profiles:
+    active: dev  # تفعيل بروفايل التطوير
+
+  jwt:
+   secret: ${JWT_SECRET}      # مفتاح JWT (ضبطه في Environment Variable)
+   accessTokenExpiration: 900000 # صلاحية Access Token بالثواني (15 دقيقة)
+   refreshTokenExpiration: 604800 # صلاحية Refresh Token بالثواني (7 أيام)
+
+
+stripe:
+  secretKey: ${STRIPE_SECRET_KEY}           # مفتاح Stripe (Environment Variable)
+  webhookSecretKey: ${STRIPE_WEBHOOK_SECRET_KEY} # مفتاح Webhook ل Stripe
